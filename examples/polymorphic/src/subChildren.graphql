@@ -1,0 +1,19 @@
+query PolymorphicCommonSubChildren {
+    sub {
+        nodes {
+            id
+            node {
+                id
+            }
+            ... on User {
+                name
+            }
+            ... on Task {
+                done
+            }
+            ... on Post {
+                title
+            }
+        }
+    }
+}
