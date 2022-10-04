@@ -4,7 +4,7 @@ on:
   pull_request:
   push:
     branches:
-      - "ci/polymorphic-toGraphQl"
+      - "feature/polymorphic-toGraphQl"
 
 name: "Continuous Integration"
 
