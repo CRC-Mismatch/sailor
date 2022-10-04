@@ -34,9 +34,10 @@ class PolymorphicConverter implements TypeConverter
 
     public function toGraphQL($value)
     {
-        if (!$value instanceof ObjectLike) {
+        if (! $value instanceof ObjectLike) {
             throw new \Exception('Should never happen');
         }
+
         return $value->toStdClass();
     }
 }

@@ -13,28 +13,28 @@ class PolymorphicChildrenTest extends TestCase
         $id = '1';
         $name = 'blarg';
 
-        $expected = (object)[
+        $expected = (object) [
             'nodes' => [
-                (object)[
+                (object) [
                     'id' => "$id.1",
-                    'node' => (object)[
+                    'node' => (object) [
                         'id' => "$id.1.5",
                         '__typename' => 'Task',
                     ],
                     'name' => $name,
                     '__typename' => 'User',
                 ],
-                (object)[
+                (object) [
                     'id' => "$id.2",
                     '__typename' => 'Post',
                 ],
-                (object)[
+                (object) [
                     'id' => "$id.3",
                     'done' => true,
                     '__typename' => 'Task',
-                ]
+                ],
             ],
-            '__typename' => 'Sub'
+            '__typename' => 'Sub',
         ];
 
         PolymorphicCommonSubChildren::mock()
@@ -42,15 +42,15 @@ class PolymorphicChildrenTest extends TestCase
             ->once()
             ->andReturn(PolymorphicCommonSubChildrenResult::fromData(
                 PolymorphicCommonSubChildren\PolymorphicCommonSubChildren::make(
-                /* sub: */
+                    /* sub: */
                     PolymorphicCommonSubChildren\Sub\Sub::make([
                         PolymorphicCommonSubChildren\Sub\Nodes\User::make(
-                            $id.'.1',
-                            PolymorphicCommonSubChildren\Sub\Nodes\Node\Task::make($id.'.1.5'),
+                            $id . '.1',
+                            PolymorphicCommonSubChildren\Sub\Nodes\Node\Task::make($id . '.1.5'),
                             $name
                         ),
-                        PolymorphicCommonSubChildren\Sub\Nodes\Post::make($id.'.2'),
-                        PolymorphicCommonSubChildren\Sub\Nodes\Task::make($id.'.3', true),
+                        PolymorphicCommonSubChildren\Sub\Nodes\Post::make($id . '.2'),
+                        PolymorphicCommonSubChildren\Sub\Nodes\Task::make($id . '.3', true),
                     ])
                 )
             ));
