@@ -98,8 +98,12 @@ abstract class ObjectLike implements TypeConverter, BelongsToEndpoint
         $converters = $this->converters();
         foreach ($converters as $name => $converter) {
             if (! property_exists($value, $name)) {
-                $endpoint = static::endpoint();
-                throw new InvalidDataException("{$endpoint}: Missing field {$name}.");
+                if ($name === '__typename') {
+                    $endpoint = static::endpoint();
+                    throw new InvalidDataException("{$endpoint}: Missing field {$name}.");
+                }
+                $instance->properties[$name] = self::UNDEFINED;
+                continue;
             }
 
             try {
